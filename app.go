@@ -26,12 +26,12 @@ func (a *App) Initialize() {
 	a.Router = mux.NewRouter()
 	a.initializeRoutes()
 
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://amanzhan:1nQFGlOL7YqZB5Y1@cluster0.c9cpf.mongodb.net/test"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("Here is your URI"))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	a.DB = client.Database("test")
+	a.DB = client.Database("Your Database name")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
@@ -49,7 +49,7 @@ func (a *App) initializeRoutes() {
 
 func (a *App) getBooks(w http.ResponseWriter, r *http.Request) {
 	
-	col := a.DB.Collection("Books")
+	col := a.DB.Collection("Collection name")
 
 	ctx, _ := context.WithTimeout(context.Background(), 15*time.Second)
 	
